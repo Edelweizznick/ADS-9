@@ -7,18 +7,18 @@
 struct Node {
     char value;
     std::vector<Node*> children;
-    Node(char v) : value(v) {}
+    explicit Node(char v) : value(v) {}
 };
 
 class PMTree {
-public:
+ public:
     Node* root;
     int n;
 
-    PMTree(const std::vector<char>& symbols);
+    explicit PMTree(const std::vector<char>& symbols);
     ~PMTree();
 
-private:
+ private:
     void buildTree(Node* node, std::vector<char> remaining);
     void deleteTree(Node* node);
 };
