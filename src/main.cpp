@@ -23,7 +23,7 @@ int main() {
     std::cout << "\ngetPerm2(2): ";
     for (char c : getPerm2(tree, 2)) std::cout << c << "\n";
 
-    // === Эксперимент ===
+    // === Вычислительный эксперимент ===
     std::ofstream out("result/times.txt");
     out << "n getAllPerms getPerm1 getPerm2\n";
 
@@ -38,7 +38,8 @@ int main() {
         PMTree t(symbols);
         auto all = getAllPerms(t);
         auto end = std::chrono::high_resolution_clock::now();
-        double t_all = std::chrono::duration<double, std::milli>(end - start).count();
+        double t_all =
+            std::chrono::duration<double, std::milli>(end - start).count();
 
         std::uniform_int_distribution<> dis(1, all.size());
         int num = dis(gen);
@@ -46,17 +47,19 @@ int main() {
         start = std::chrono::high_resolution_clock::now();
         getPerm1(t, num);
         end = std::chrono::high_resolution_clock::now();
-        double t1 = std::chrono::duration<double, std::milli>(end - start).count();
+        double t1 =
+            std::chrono::duration<double, std::milli>(end - start).count();
 
         start = std::chrono::high_resolution_clock::now();
         getPerm2(t, num);
         end = std::chrono::high_resolution_clock::now();
-        double t2 = std::chrono::duration<double, std::milli>(end - start).count();
+        double t2 =
+            std::chrono::duration<double, std::milli>(end - start).count();
 
         out << n << " " << t_all << " " << t1 << " " << t2 << "\n";
     }
     out.close();
 
-    std::cout << "Experiment finished. See result/times.txt\n";
+    std::cout << "Experiment finished → result/times.txt\n";
     return 0;
 }
